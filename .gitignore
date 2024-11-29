@@ -13,3 +13,4 @@
 # Anything under /bin or /obj
 */bin
 */obj
+Temp/Program.cs
