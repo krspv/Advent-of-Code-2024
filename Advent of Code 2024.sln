@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35431.28
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Temp", "Temp\Temp.csproj", "{D6275440-7903-4962-A972-A6C62F9F0F61}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Temp", "Temp\Temp.csproj", "{D6275440-7903-4962-A972-A6C62F9F0F61}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Helpers", "Helpers\Helpers.csproj", "{3D898753-A5D9-4B22-913A-07437B2AC2D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day 01 - Historian Hysteria", "Day 01 - Historian Hysteria\Day 01 - Historian Hysteria.csproj", "{D1732BD2-F4E9-490D-B3CF-FB6D1583F22D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{D6275440-7903-4962-A972-A6C62F9F0F61}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6275440-7903-4962-A972-A6C62F9F0F61}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6275440-7903-4962-A972-A6C62F9F0F61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D898753-A5D9-4B22-913A-07437B2AC2D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D898753-A5D9-4B22-913A-07437B2AC2D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D898753-A5D9-4B22-913A-07437B2AC2D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D898753-A5D9-4B22-913A-07437B2AC2D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1732BD2-F4E9-490D-B3CF-FB6D1583F22D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1732BD2-F4E9-490D-B3CF-FB6D1583F22D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1732BD2-F4E9-490D-B3CF-FB6D1583F22D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1732BD2-F4E9-490D-B3CF-FB6D1583F22D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
