@@ -53,7 +53,7 @@ nSum = 0;
 foreach (int num in leftList) {
   if (!timesAppears.ContainsKey(num)) {
     int index = rightList.BinarySearch(num);
-    if (index > 0) {
+    if (index >= 0) {
       int lowIndex = index, highIndex = index;
       while (lowIndex > 0 && rightList[lowIndex - 1] == num) lowIndex--;
       while (highIndex < rightList.Count - 1 && rightList[highIndex + 1] == num) highIndex++;
