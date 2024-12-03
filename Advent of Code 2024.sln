@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Helpers", "Helpers\Helpers.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day 01 - Historian Hysteria", "Day 01 - Historian Hysteria\Day 01 - Historian Hysteria.csproj", "{D1732BD2-F4E9-490D-B3CF-FB6D1583F22D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day 02 - Red-Nosed Reports", "Day 02 - Red-Nosed Reports\Day 02 - Red-Nosed Reports.csproj", "{BB393509-92CA-420F-B48D-CE534199BC6E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day 02 - Red-Nosed Reports", "Day 02 - Red-Nosed Reports\Day 02 - Red-Nosed Reports.csproj", "{BB393509-92CA-420F-B48D-CE534199BC6E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day 03 - Mull It Over", "Day 03 - Mull It Over\Day 03 - Mull It Over.csproj", "{54A41A2B-F033-4014-8C5F-7A709DF20FAB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{BB393509-92CA-420F-B48D-CE534199BC6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB393509-92CA-420F-B48D-CE534199BC6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB393509-92CA-420F-B48D-CE534199BC6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54A41A2B-F033-4014-8C5F-7A709DF20FAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54A41A2B-F033-4014-8C5F-7A709DF20FAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54A41A2B-F033-4014-8C5F-7A709DF20FAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54A41A2B-F033-4014-8C5F-7A709DF20FAB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
