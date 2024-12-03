@@ -20,15 +20,12 @@ string input = File.ReadAllText(fileName);
 
 
 
-
 stopwatch.Start();
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Part 1
 int SolveForInput(string input) =>
-  Regex.Matches(input, @"mul\(\d{1,3},\d{1,3}\)")
-  .Aggregate(0, (acc, match) => acc + Regex.Matches(match.Value, @"\d{1,3}")
-      .Select(match => Int32.Parse(match.Value))
-      .Aggregate(1, (acc, n) => acc * n));
+  Regex.Matches(input, @"mul\((\d{1,3}),(\d{1,3})\)")
+  .Aggregate(0, (acc, match) => acc + Int32.Parse(match.Groups[1].Value) * Int32.Parse(match.Groups[2].Value));
 
 int nSolution = SolveForInput(input);
 // Part 1
