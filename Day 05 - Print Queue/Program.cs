@@ -43,14 +43,9 @@ stopwatch.Start();
 // Part 1
 bool IsCorrectlyOrdered(List<int> section) {
   for (int i = 0; i < section.Count - 1; ++i) {
-    int nItemL = section[i];
-    if (!lessThan.ContainsKey(nItemL))
+    int nItemCur = section[i], nItemNext = section[i + 1];
+    if (!lessThan.ContainsKey(nItemCur) || !lessThan[nItemCur].Contains(nItemNext))
       return false;
-    for (int j = i + 1; j < section.Count; ++j) {
-      int nItemR = section[j];
-      if (!lessThan[nItemL].Contains(nItemR))
-        return false;
-    }
   }
   return true;
 }
