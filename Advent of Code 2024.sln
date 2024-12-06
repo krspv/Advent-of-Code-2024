@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day 03 - Mull It Over", "Da
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day 04 - Ceres Search", "Day 04 - Ceres Search\Day 04 - Ceres Search.csproj", "{FAFA2A80-8B85-49CF-9B0D-CA6BA68A2CC7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day 05 - Print Queue", "Day 05 - Print Queue\Day 05 - Print Queue.csproj", "{F60F2142-F18E-4E96-AC68-0555EDBAAF5B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day 05 - Print Queue", "Day 05 - Print Queue\Day 05 - Print Queue.csproj", "{F60F2142-F18E-4E96-AC68-0555EDBAAF5B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day 06 - Guard Gallivant", "Day 06 - Guard Gallivant\Day 06 - Guard Gallivant.csproj", "{B527217A-F360-4DEB-876A-30A0E27ABFDC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{F60F2142-F18E-4E96-AC68-0555EDBAAF5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F60F2142-F18E-4E96-AC68-0555EDBAAF5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F60F2142-F18E-4E96-AC68-0555EDBAAF5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B527217A-F360-4DEB-876A-30A0E27ABFDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B527217A-F360-4DEB-876A-30A0E27ABFDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B527217A-F360-4DEB-876A-30A0E27ABFDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B527217A-F360-4DEB-876A-30A0E27ABFDC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
