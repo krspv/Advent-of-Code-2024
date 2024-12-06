@@ -26,11 +26,9 @@ stopwatch.Start();
 // Part 1
 
 // Find the starting position
-int nRowPos = -1, nColPos = -1;
-for (int row = 0; nRowPos == -1; ++row) {
-  nColPos = lines[row].IndexOf('^');
-  if (nColPos != -1) nRowPos = row;
-}
+int nRowPos = 0, nColPos = -1;
+for (; nColPos == -1; ++nRowPos)
+  nColPos = lines[nRowPos].IndexOf('^');
 
 int nCount = 1;
 visited[nRowPos,nColPos] = true;
