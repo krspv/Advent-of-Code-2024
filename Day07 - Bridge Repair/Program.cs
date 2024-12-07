@@ -33,29 +33,22 @@ bool[] validLines = new bool[testValues.Count];  // Save the valid ones for Part
 int nMaxCombinationArrLength = 0;  // Also needed for Part 2
 for (int line = 0; line < testValues.Count; ++line) {
   int nCombinationArrayLength = numbers[line].Count - 1;
+  int nTotalCombinations = 1 << nCombinationArrayLength;
   if (nCombinationArrayLength > nMaxCombinationArrLength)
     nMaxCombinationArrLength = nCombinationArrayLength;
-  int nTotalCombinations = 1 << nCombinationArrayLength;
 
   for (int nCurComb = 0; nCurComb < nTotalCombinations; ++nCurComb) {
-    // Convert the current combination nCurComb to a boolean array (according to its bit values)
-    bool[] ops = new bool[nCombinationArrayLength];
     int nTempComb = nCurComb;
-    for (int nOpPos = nCombinationArrayLength - 1; nOpPos >= 0 && nTempComb >= 0; --nOpPos) {
-      bool mul = (nTempComb & 0x1) != 0;
-      nTempComb >>= 1;
-      ops[nOpPos] = mul;
-    }
-
-    // See if we have a match with the current combination of operators
     ulong nCalc = numbers[line][0];
-    for (int i = 0; i < ops.Length; ++i) {
-      if (ops[i])
+
+    for (int i = 0; i < numbers[line].Count - 1; ++i) {
+      if ((nTempComb % 2) != 0)
         nCalc *= numbers[line][i + 1];
       else
         nCalc += numbers[line][i + 1];
       if (nCalc > testValues[line])
         break;
+      nTempComb >>= 1;
     }
 
     if (nCalc == testValues[line]) {  // Found a match
@@ -97,27 +90,17 @@ powersOf3[0] = 3;
 for (int i = 1; i < nMaxCombinationArrLength; ++i)
   powersOf3[i] = 3 * powersOf3[i - 1];
 
-nSum = 0;
 for (int line = 0; line < testValues.Count; ++line) {
-  if (validLines[line])
-    nSum += testValues[line];
-  else {
+  if (!validLines[line]) {
     int nCombinationArrayLength = numbers[line].Count - 1;
     int nTotalCombinations = powersOf3[nCombinationArrayLength - 1];
 
     for (int nCurComb = 0; nCurComb < nTotalCombinations; ++nCurComb) {
-      // Convert the current combination nCurComb to a ternary array (0 means +, 1 means *, 2 means ||)
-      short[] ops = new short[nCombinationArrayLength];
       int nTempComb = nCurComb;
-      for (int nOpPos = nCombinationArrayLength - 1; nOpPos >= 0 && nTempComb >= 0; --nOpPos) {
-        ops[nOpPos] = (short)(nTempComb % 3);
-        nTempComb /= 3;
-      }
-
-      // See if we have a match with the current combination of operators
       ulong nCalc = numbers[line][0];
-      for (int i = 0; i < ops.Length; ++i) {
-        switch (ops[i]) {
+
+      for (int i = 0; i < numbers[line].Count - 1; ++i) {
+        switch (nTempComb % 3) {
           case 0: // +
             nCalc += numbers[line][i + 1];
             break;
@@ -132,6 +115,7 @@ for (int line = 0; line < testValues.Count; ++line) {
         }
         if (nCalc > testValues[line])
           break;
+        nTempComb /= 3;
       }
 
       if (nCalc == testValues[line]) {  // Found a match
