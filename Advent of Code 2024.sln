@@ -17,7 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day 04 - Ceres Search", "Da
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day 05 - Print Queue", "Day 05 - Print Queue\Day 05 - Print Queue.csproj", "{F60F2142-F18E-4E96-AC68-0555EDBAAF5B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day 06 - Guard Gallivant", "Day 06 - Guard Gallivant\Day 06 - Guard Gallivant.csproj", "{B527217A-F360-4DEB-876A-30A0E27ABFDC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day 06 - Guard Gallivant", "Day 06 - Guard Gallivant\Day 06 - Guard Gallivant.csproj", "{B527217A-F360-4DEB-876A-30A0E27ABFDC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day07 - Bridge Repair", "Day07 - Bridge Repair\Day07 - Bridge Repair.csproj", "{68AC7F1C-232D-4C31-91E9-7D8A702E0F3E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{B527217A-F360-4DEB-876A-30A0E27ABFDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B527217A-F360-4DEB-876A-30A0E27ABFDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B527217A-F360-4DEB-876A-30A0E27ABFDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68AC7F1C-232D-4C31-91E9-7D8A702E0F3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68AC7F1C-232D-4C31-91E9-7D8A702E0F3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68AC7F1C-232D-4C31-91E9-7D8A702E0F3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68AC7F1C-232D-4C31-91E9-7D8A702E0F3E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
