@@ -21,7 +21,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day 06 - Guard Gallivant", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day07 - Bridge Repair", "Day07 - Bridge Repair\Day07 - Bridge Repair.csproj", "{68AC7F1C-232D-4C31-91E9-7D8A702E0F3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day08 - Resonant Collinearity", "Day08 - Resonant Collinearity\Day08 - Resonant Collinearity.csproj", "{177996C3-E5D1-4110-9238-6A3C9D0FB6BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day08 - Resonant Collinearity", "Day08 - Resonant Collinearity\Day08 - Resonant Collinearity.csproj", "{177996C3-E5D1-4110-9238-6A3C9D0FB6BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day09 - Disk Fragmenter", "Day09 - Disk Fragmenter\Day09 - Disk Fragmenter.csproj", "{231BA8E1-1E38-49FB-9A7D-C53510B95F72}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +71,10 @@ Global
 		{177996C3-E5D1-4110-9238-6A3C9D0FB6BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{177996C3-E5D1-4110-9238-6A3C9D0FB6BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{177996C3-E5D1-4110-9238-6A3C9D0FB6BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{231BA8E1-1E38-49FB-9A7D-C53510B95F72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{231BA8E1-1E38-49FB-9A7D-C53510B95F72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{231BA8E1-1E38-49FB-9A7D-C53510B95F72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{231BA8E1-1E38-49FB-9A7D-C53510B95F72}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
