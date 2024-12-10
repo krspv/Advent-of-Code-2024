@@ -13,7 +13,7 @@ string fileName = Path.Combine(Directory.GetParent(AppContext.BaseDirectory).Par
 
 
 // Read the input
-List<string> map = File.ReadAllLines(fileName).ToList();
+List<string> map = [.. File.ReadAllLines(fileName)];
 int nSize = map.Count;
 Debug.Assert(map.All(x => x.Length == nSize));
 
