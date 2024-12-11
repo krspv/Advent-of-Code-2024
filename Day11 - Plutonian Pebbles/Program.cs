@@ -31,11 +31,12 @@ for (int i = 1; i < 10; ++i)
   arrPowers10[i] = 10 * arrPowers10[i - 1];
 
 Dictionary<(long, int), long> cache = []; // Added caching after Part2 was revealed
+
 long Blink(long nStone, int nTimes) {
   if (cache.ContainsKey((nStone, nTimes)))
     return cache[(nStone, nTimes)];
 
-  long nRetVal = -1;
+  long nRetVal;
   if (nTimes == 0)
     nRetVal = 1;
   else if (nStone == 0)
