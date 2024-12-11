@@ -29,10 +29,8 @@ int Trail(int row, int col, char v, HashSet<(int,int)> nines) {
   if (map[row][col] != v) return 0;
   if (v == '9') {
     if (nines.Contains((row, col))) return 0;
-    else {
-      nines.Add((row, col));
-      return 1;
-    }
+    nines.Add((row, col));
+    return 1;
   }
 
   char chNext = (char)(v + 1);
