@@ -241,7 +241,7 @@ struct KGroup {
   public int Perimeter { get; set; }  // This means Side for Part2
 }
 
-class KGroup2 {
+class KGroup2 { // Used in: Part 2 (different approach)
   public char Plant { get; set; }
   public int Area { get; set; } = 0;
   public HashSet<(int, int, ESide)> Sides { get; } = [];
