@@ -168,11 +168,83 @@ PrintHelper.ПечатиЕлкаЗаКрај();
 
 
 
+stopwatch.Restart();
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Part 2 (different approach)
+visited = new bool[nSize, nSize];
+List<KGroup2> groups2 = [];
+
+for (int row = 0; row < nSize; ++row)
+  for (int col = 0; col < nSize; ++col)
+    if (!visited[row, col]) {
+      KGroup2 group = new() { Plant = garden[row][col] };
+      ProcessPlotAnotherWay(row, col, group);
+      groups2.Add(group);
+    }
+
+void ProcessPlotAnotherWay(int row, int col, KGroup2 group) {
+  visited[row, col] = true;
+
+  group.Area++;
+
+  bool TopEdge(int r, int c) => c < nSize && (r == 0 || garden[r - 1][c] != group.Plant);
+  bool BottomEdge(int r, int c) => c < nSize && (r == nSize - 1 || garden[r + 1][c] != group.Plant);
+  bool LeftEdge(int r, int c) => r < nSize && (c == 0 || garden[r][c - 1] != group.Plant);
+  bool RightEdge(int r, int c) => r < nSize && (c == nSize - 1 || garden[r][c + 1] != group.Plant);
+
+  int tmp = col;
+  if (TopEdge(row, tmp)) {
+    while (TopEdge(row, tmp) && garden[row][tmp] == group.Plant) tmp++;
+    group.Sides.Add((row, tmp, ESide.Top));
+  }
+  tmp = col;
+  if (BottomEdge(row, tmp)) {
+    while (BottomEdge(row, tmp) && garden[row][tmp] == group.Plant) tmp++;
+    group.Sides.Add((row, tmp, ESide.Bottom));
+  }
+  tmp = row;
+  if (LeftEdge(tmp, col)) {
+    while (LeftEdge(tmp, col) && garden[tmp][col] == group.Plant) tmp++;
+    group.Sides.Add((tmp, col, ESide.Left));
+  }
+  tmp = row;
+  if (RightEdge(tmp, col)) {
+    while (RightEdge(tmp, col) && garden[tmp][col] == group.Plant) tmp++;
+    group.Sides.Add((tmp, col, ESide.Right));
+  }
+
+  (int, int)[] directions = { (-1, 0), (1, 0), (0, -1), (0, 1) };
+  foreach ((int dR, int dC) in directions) {
+    int nextRow = row + dR;
+    int nextCol = col + dC;
+    if (nextRow < 0 || nextCol < 0 || nextRow >= nSize || nextCol >= nSize) continue;
+    if (garden[nextRow][nextCol] == group.Plant && !visited[nextRow, nextCol])
+      ProcessPlotAnotherWay(nextRow, nextCol, group);
+  }
+}
+
+nFencePrice = groups2.Sum(gr => gr.Area * gr.Sides.Count);
+// Part 2 (different approach)
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+stopwatch.Stop();
+
+PrintHelper.ПечатиВторДел(stopwatch.ElapsedMilliseconds, nFencePrice);
+
+
+
+
+
 // Types
 struct KGroup {
   public char Plant { get; set; }
   public int Area { get; set; }
   public int Perimeter { get; set; }  // This means Side for Part2
+}
+
+class KGroup2 {
+  public char Plant { get; set; }
+  public int Area { get; set; } = 0;
+  public HashSet<(int, int, ESide)> Sides { get; } = [];
 }
 
 enum ESide : byte {
