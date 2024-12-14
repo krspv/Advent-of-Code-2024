@@ -67,6 +67,7 @@ int nSteps = 0;
 while (true) {
   bool bOverlap = false;
   bool[,] posOverlap = new bool[maxPos.x, maxPos.y];
+
   foreach (Robot robot in robotsP2) {
     robot.Move(1, maxPos);
     if (posOverlap[robot.Pos.x, robot.Pos.y]) bOverlap = true;
