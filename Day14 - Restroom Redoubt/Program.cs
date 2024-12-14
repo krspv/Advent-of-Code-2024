@@ -101,10 +101,8 @@ class Robot {
 
   public void Move(int nSeconds, (int x, int y) mxPos) {
     (int x, int y) nextPos = ((Pos.x + Vel.x * nSeconds) % mxPos.x, (Pos.y + Vel.y * nSeconds) % mxPos.y);
-    if (nextPos.x < 0)
-      nextPos.x += mxPos.x;
-    if (nextPos.y < 0)
-      nextPos.y += mxPos.y;
+    if (nextPos.x < 0) nextPos.x += mxPos.x;
+    if (nextPos.y < 0) nextPos.y += mxPos.y;
     Pos = nextPos;
   }
 
