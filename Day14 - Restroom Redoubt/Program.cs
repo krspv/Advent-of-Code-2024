@@ -18,11 +18,12 @@ List<Robot> robots = [], robotsP2 = [];
 foreach (string line in File.ReadAllLines(fileName)) {
   int[] values = Regex.Matches(line, @"^p=(-?\d+),(-?\d+) v=(-?\d+),(-?\d+)$")[0]
     .Groups.Cast<Group>().Skip(1).Select(g => Int32.Parse(g.Value)).ToArray();
-  robots.Add(new Robot() {
+
+  robots.Add(new() {
     Pos = (values[0], values[1]),
     Vel = (values[2], values[3]),
   });
-  robotsP2.Add(new Robot() {
+  robotsP2.Add(new() {
     Pos = (values[0], values[1]),
     Vel = (values[2], values[3]),
   });
