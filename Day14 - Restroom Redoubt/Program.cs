@@ -28,7 +28,7 @@ foreach (string line in File.ReadAllLines(fileName)) {
     Vel = (values[2], values[3]),
   });
 }
-(int x, int y) maxPos = (robots.Max(r => 1 + r.Pos.x), robots.Max(r => 1 + r.Pos.y));
+Robot.Max = (robots.Max(r => 1 + r.Pos.x), robots.Max(r => 1 + r.Pos.y));
 
 
 
@@ -38,14 +38,12 @@ stopwatch.Start();
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Part 1
 foreach (Robot robot in robots)
-  robot.Move(100, maxPos);
+  robot.Move(100);
 
 int[] quads = { 0, 0, 0, 0 };
-foreach (Robot robot in robots) {
-  int nQuadrant = (int)robot.Quadrant(maxPos);
-  if (nQuadrant >= 0)
-    quads[nQuadrant]++;
-}
+foreach (Robot robot in robots)
+  if (robot.Quadrant != KQuadrant.None)
+    quads[(int)robot.Quadrant]++;
 
 int nProduct = quads.Aggregate((acc, q) => acc * q);
 // Part 1
@@ -60,17 +58,16 @@ PrintHelper.ПечатиПрвДел(stopwatch.ElapsedMilliseconds, nProduct);
 
 stopwatch.Restart();
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Part 2
-// It seems that the christmas tree happens when no robots overlap
+// Part 2 (It seems that the christmas tree happens when no robots overlap)
 int nSteps = 0;
 
 while (true) {
   bool bOverlap = false;
-  bool[,] posOverlap = new bool[maxPos.x, maxPos.y];
+  bool[,] posOverlap = new bool[Robot.Max.x, Robot.Max.y];
 
   foreach (Robot robot in robotsP2) {
-    robot.Move(1, maxPos);
-    if (posOverlap[robot.Pos.x, robot.Pos.y]) bOverlap = true;
+    robot.Move(1);
+    bOverlap |= posOverlap[robot.Pos.x, robot.Pos.y];
     posOverlap[robot.Pos.x, robot.Pos.y] = true;
   }
 
@@ -96,21 +93,23 @@ PrintHelper.ПечатиЕлкаЗаКрај();
 // Types
 [DebuggerDisplay("Pos: ({Pos.x}, {Pos.y}), Vel: ({Vel.x}, {Vel.y})")]
 class Robot {
+  public static (int x, int y) Max { get; set; }
+
   public (int x, int y) Pos { get; set; }
   public (int x, int y) Vel { get; set; }
 
-  public void Move(int nSeconds, (int x, int y) mxPos) {
-    (int x, int y) nextPos = ((Pos.x + Vel.x * nSeconds) % mxPos.x, (Pos.y + Vel.y * nSeconds) % mxPos.y);
-    if (nextPos.x < 0) nextPos.x += mxPos.x;
-    if (nextPos.y < 0) nextPos.y += mxPos.y;
+  public void Move(int nSeconds) {
+    (int x, int y) nextPos = ((Pos.x + Vel.x * nSeconds) % Max.x, (Pos.y + Vel.y * nSeconds) % Max.y);
+    if (nextPos.x < 0) nextPos.x += Max.x;
+    if (nextPos.y < 0) nextPos.y += Max.y;
     Pos = nextPos;
   }
 
-  public KQuadrant Quadrant((int x, int y) mxPos) => Pos switch {
-    var (x, y) when (x < mxPos.x / 2 && y < mxPos.y / 2) => KQuadrant.TopLeft,
-    var (x, y) when (x > mxPos.x / 2 && y < mxPos.y / 2) => KQuadrant.TopRight,
-    var (x, y) when (x < mxPos.x / 2 && y > mxPos.y / 2) => KQuadrant.BottomLeft,
-    var (x, y) when (x > mxPos.x / 2 && y > mxPos.y / 2) => KQuadrant.BottomRight,
+  public KQuadrant Quadrant => Pos switch {
+    var (x, y) when (x < Max.x / 2 && y < Max.y / 2) => KQuadrant.TopLeft,
+    var (x, y) when (x > Max.x / 2 && y < Max.y / 2) => KQuadrant.TopRight,
+    var (x, y) when (x < Max.x / 2 && y > Max.y / 2) => KQuadrant.BottomLeft,
+    var (x, y) when (x > Max.x / 2 && y > Max.y / 2) => KQuadrant.BottomRight,
     _ => KQuadrant.None,
   };
 }
