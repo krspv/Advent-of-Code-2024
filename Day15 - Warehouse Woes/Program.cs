@@ -150,7 +150,7 @@ foreach (char chMove in strMoves) {
   KType type;
   while (true) {
     row += dR;
-    type = Next(row, col, pushLine.Peek());
+    type = Next(row, col, dR, pushLine.Peek());
     if (type != KType.Box)
       break;
     (int c1, int c2) = pushLine.Peek();
@@ -165,8 +165,14 @@ foreach (char chMove in strMoves) {
     while (pushLine.Count > 0) {
       (int c1, int c2) = pushLine.Pop();
       for (int c = c1; c <= c2; ++c) {
-        warehouse[row, c] = warehouse[row - dR, c];
-        warehouse[row - dR, c] = '.';
+        if (warehouse[row - dR, c] == '[') {
+          if (warehouse[row - dR - dR, c] != '.' || warehouse[row - dR - dR, c + 1] != '.') {
+            warehouse[row, c] = warehouse[row - dR, c];
+            warehouse[row, c + 1] = warehouse[row - dR, c + 1];
+            warehouse[row - dR, c] = '.';
+            warehouse[row - dR, c + 1] = '.';
+          }
+        }
       }
       row -= dR;
     }
@@ -176,10 +182,10 @@ foreach (char chMove in strMoves) {
   }
 }
 
-KType Next(int row, int col, (int c1, int c2) span) {
+KType Next(int row, int col, int dR, (int c1, int c2) span) {
   bool bFree = true;
   for (int c = span.c1; c <= span.c2; ++c) {
-    if (warehouse[row, c] == '#')
+    if (warehouse[row, c] == '#' && warehouse[row - dR, c] != '.')
       return KType.Blocker;
     if (warehouse[row, c] != '.')
       bFree = false;
@@ -204,6 +210,24 @@ PrintHelper.ПечатиВторДел(stopwatch.ElapsedMilliseconds, nGPS);
 
 
 PrintHelper.ПечатиЕлкаЗаКрај();
+
+
+
+
+
+// Debug utils
+#pragma warning disable CS8321
+string DebugWarehouse() {
+  StringBuilder sb = new();
+  for (int row = 0; row < warehouse.GetLength(0); ++row) {
+    for (int col = 0; col < warehouse.GetLength(1); ++col) {
+      sb.Append(warehouse[row, col]);
+    }
+    sb.Append('\n');
+  }
+  return sb.ToString();
+}
+#pragma warning restore CS8321
 
 
 
