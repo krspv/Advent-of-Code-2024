@@ -19,14 +19,8 @@ foreach (string line in File.ReadAllLines(fileName)) {
   int[] values = Regex.Matches(line, @"^p=(-?\d+),(-?\d+) v=(-?\d+),(-?\d+)$")[0]
     .Groups.Cast<Group>().Skip(1).Select(g => Int32.Parse(g.Value)).ToArray();
 
-  robots.Add(new() {
-    Pos = (values[0], values[1]),
-    Vel = (values[2], values[3]),
-  });
-  robotsP2.Add(new() {
-    Pos = (values[0], values[1]),
-    Vel = (values[2], values[3]),
-  });
+  robots.Add(new() { Pos = (values[0], values[1]), Vel = (values[2], values[3]) });
+  robotsP2.Add(new() { Pos = (values[0], values[1]), Vel = (values[2], values[3]) });
 }
 Robot.Max = (robots.Max(r => 1 + r.Pos.x), robots.Max(r => 1 + r.Pos.y));
 
