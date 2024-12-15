@@ -30,7 +30,7 @@ foreach (string line in File.ReadAllLines(fileName)) {
 
 Debug.Assert(lines.All(line => line.Length == lines.Count));
 int nSize = lines.Count;
-char[,] warehouse = new char[lines.Count, lines[0].Length];
+char[,] warehouse = new char[nSize, nSize];
 (int r, int c) robotPos = (0, 0);
 for (int row = 0; row < nSize; ++row)
   for (int col = 0; col < nSize; ++col) {
@@ -131,18 +131,14 @@ foreach (char chMove in strMoves) {
   }
 
   if (dR == 0) {  // Horizontal push
-    while (warehouse[row, col] != '.' && warehouse[row, col] != '#') {
-      row += dR;
+    while (warehouse[row, col] != '.' && warehouse[row, col] != '#')
       col += dC;
-    }
     if (warehouse[row, col] == '.') {
       do {
-        warehouse[row, col] = warehouse[row - dR, col - dC];
-        row -= dR;
+        warehouse[row, col] = warehouse[row, col - dC];
         col -= dC;
-      } while (row != robotPos.r || col != robotPos.c);
+      } while (col != robotPos.c);
       warehouse[robotPos.r, robotPos.c] = '.';
-      robotPos.r += dR;
       robotPos.c += dC;
     }
     continue;
