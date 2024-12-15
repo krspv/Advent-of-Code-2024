@@ -47,7 +47,9 @@ string strMoves = sbMoves.ToString();
 stopwatch.Start();
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Part 1
+// string ss;
 foreach (char chMove in strMoves) {
+  // ss = DebugWarehouse();
   var (dR, dC) = chMove switch {
     '^' => (-1, 0),
     'v' => (1, 0),
@@ -72,6 +74,7 @@ foreach (char chMove in strMoves) {
   }
 }
 
+// ss = DebugWarehouse();
 int nGPS = 0;
 for (int row = 0; row < nSize; ++row)
   for (int col = 0; col < nSize; ++col)
@@ -107,6 +110,7 @@ for (int row = 0; row < nSize; ++row)
   }
 
 foreach (char chMove in strMoves) {
+  // ss = DebugWarehouse();
   var (dR, dC) = chMove switch {
     '^' => (-1, 0),
     'v' => (1, 0),
@@ -145,36 +149,37 @@ foreach (char chMove in strMoves) {
   }
 
   // Vertical push
-  Stack<(int, int)> pushLine = [];
-  pushLine.Push(warehouse[row, col] == '[' ? (col, col + 1) : (col - 1, col));
-  KType type;
-  while (true) {
-    row += dR;
-    type = Next(row, col, dR, pushLine.Peek());
-    if (type != KType.Box)
-      break;
-    (int c1, int c2) = pushLine.Peek();
-    if (warehouse[row, c1] == ']') c1--;
-    else while (c1 < c2 && warehouse[row, c1] == '.') c1++;
-    if (warehouse[row, c2] == '[') c2++;
-    else while (c2 > c1 && warehouse[row, c2] == '.') c2--;
-    pushLine.Push((c1, c2));
+  Stack<List<(int, int)>> pushables = [];
+  var box = warehouse[row, col] == '[' ? (row, col) : (row, col - 1);
+  pushables.Push([box]);
+
+  bool bBlocked = false;
+  while (!bBlocked) {
+    List<(int, int)> list = pushables.Peek();
+    List<(int, int)> next = [];
+    foreach ((int rBox, int cBox) in list) {
+      if (warehouse[rBox + dR, cBox] == '#' || warehouse[rBox + dR, cBox + 1] == '#') {
+        bBlocked = true;
+        break;
+      }
+      for (int dH = -1; dH < 2; ++dH) {
+        if (warehouse[rBox + dR, cBox + dH] == '[')
+          next.Add((rBox + dR, cBox + dH));
+      }
+    }
+    if (next.Count == 0) break;
+    pushables.Push(next);
   }
 
-  if (type == KType.Free) {
-    while (pushLine.Count > 0) {
-      (int c1, int c2) = pushLine.Pop();
-      for (int c = c1; c <= c2; ++c) {
-        if (warehouse[row - dR, c] == '[') {
-          if (warehouse[row - dR - dR, c] != '.' || warehouse[row - dR - dR, c + 1] != '.') {
-            warehouse[row, c] = warehouse[row - dR, c];
-            warehouse[row, c + 1] = warehouse[row - dR, c + 1];
-            warehouse[row - dR, c] = '.';
-            warehouse[row - dR, c + 1] = '.';
-          }
-        }
+  if (!bBlocked) {
+    while (pushables.Count > 0) {
+      List<(int, int)> list = pushables.Pop();
+      foreach ((int rBox, int cBox) in list) {
+        warehouse[rBox + dR, cBox] = '[';
+        warehouse[rBox + dR, cBox + 1] = ']';
+        warehouse[rBox, cBox] = '.';
+        warehouse[rBox, cBox + 1] = '.';
       }
-      row -= dR;
     }
     warehouse[robotPos.r, robotPos.c] = '.';
     robotPos.r += dR;
@@ -182,18 +187,7 @@ foreach (char chMove in strMoves) {
   }
 }
 
-KType Next(int row, int col, int dR, (int c1, int c2) span) {
-  bool bFree = true;
-  for (int c = span.c1; c <= span.c2; ++c) {
-    if (warehouse[row, c] == '#' && warehouse[row - dR, c] != '.')
-      return KType.Blocker;
-    if (warehouse[row, c] != '.')
-      bFree = false;
-  }
-  if (bFree) return KType.Free;
-  return KType.Box;
-}
-
+// ss = DebugWarehouse();
 nGPS = 0;
 for (int row = 0; row < nSize; ++row)
   for (int col = 0; col < 2*nSize; ++col)
@@ -228,14 +222,3 @@ string DebugWarehouse() {
   return sb.ToString();
 }
 #pragma warning restore CS8321
-
-
-
-
-
-// Types
-enum KType {
-  Blocker,
-  Free,
-  Box,
-};
