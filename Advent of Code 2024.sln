@@ -33,7 +33,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day12 - Garden Groups", "Da
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day13 - Claw Contraption", "Day13 - Claw Contraption\Day13 - Claw Contraption.csproj", "{B1244256-DBC7-4B32-AC32-FC5B52F97250}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day14 - Restroom Redoubt", "Day14 - Restroom Redoubt\Day14 - Restroom Redoubt.csproj", "{3001B615-CB20-4C16-8CCB-5C6E40D43033}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day14 - Restroom Redoubt", "Day14 - Restroom Redoubt\Day14 - Restroom Redoubt.csproj", "{3001B615-CB20-4C16-8CCB-5C6E40D43033}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day15 - Warehouse Woes", "Day15 - Warehouse Woes\Day15 - Warehouse Woes.csproj", "{24B1BD8E-9244-4D92-822A-ED853884E670}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -105,6 +107,10 @@ Global
 		{3001B615-CB20-4C16-8CCB-5C6E40D43033}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3001B615-CB20-4C16-8CCB-5C6E40D43033}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3001B615-CB20-4C16-8CCB-5C6E40D43033}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24B1BD8E-9244-4D92-822A-ED853884E670}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24B1BD8E-9244-4D92-822A-ED853884E670}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24B1BD8E-9244-4D92-822A-ED853884E670}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24B1BD8E-9244-4D92-822A-ED853884E670}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
