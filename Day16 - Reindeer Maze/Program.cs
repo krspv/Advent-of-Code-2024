@@ -16,7 +16,8 @@ string fileName = Path.Combine(Directory.GetParent(AppContext.BaseDirectory).Par
 List<string> maze = [.. File.ReadAllLines(fileName)];
 int nSize = maze.Count;
 Debug.Assert(maze.All(line => line.Length == nSize));
-int[,] costMap = new int[nSize, nSize];
+Debug.Assert(maze[nSize - 2][1] == 'S');
+Debug.Assert(maze[1][nSize - 2] == 'E');
 
 
 
@@ -27,8 +28,7 @@ stopwatch.Start();
 // Part 1
 Queue<(int, int, Orientation, int)> queue = [];
 queue.Enqueue((nSize - 2, 1, Orientation.East, 0));  // The S position
-Debug.Assert(maze[nSize - 2][1] == 'S');
-Debug.Assert(maze[1][nSize - 2] == 'E');
+int[,] costMap = new int[nSize, nSize];
 
 (int, int) NextRowCol(int nRow, int nCol, Orientation orient) => orient switch {
   Orientation.East => (nRow, nCol + 1),
