@@ -92,6 +92,7 @@ queueBack.Enqueue((1, nSize - 2));  // The E position
 
 while (queueBack.Count > 0) {
   Queue<(int, int)> nextQueue = [];
+
   while (queueBack.Count > 0) {
     var (row, col) = queueBack.Dequeue();
     if (!history.Contains((row, col))) {
@@ -110,6 +111,7 @@ while (queueBack.Count > 0) {
         }
     }
   }
+
   queueBack = nextQueue;
 }
 // Part 2
