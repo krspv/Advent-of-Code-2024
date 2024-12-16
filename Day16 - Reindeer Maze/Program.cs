@@ -105,7 +105,7 @@ while (queueBack.Count > 0) {
             nextQueue.Enqueue((row + dR, col + dC));
           else if (costMap[row + dR, col + dC] == costMap[row, col] - 1001) {
             nextQueue.Enqueue((row + dR, col + dC));
-            if (costMap[row + 2 * dR, col + 2 * dC] == costMap[row, col] - 2)
+            if (maze[row + 2 * dR][col + 2 * dC] != '#' && costMap[row + 2 * dR, col + 2 * dC] == costMap[row, col] - 2)
               nextQueue.Enqueue((row + 2 * dR, col + 2 * dC));
           }
         }
