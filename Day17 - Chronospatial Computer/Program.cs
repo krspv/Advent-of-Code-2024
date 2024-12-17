@@ -95,7 +95,7 @@ class KComputer {
       program.Add(((KOpcode)Int32.Parse(strProg[i]), Int32.Parse(strProg[i + 1])));
   }
 
-  private long GetComboVal(int operand) => operand < 4 ? operand : Reg[operand - 4];
+  private long GetComboVal(int operand) => operand < 4 ? operand : (operand < 7 ? Reg[operand - 4] : 0);
 
   public void Run() {
     while (nHead < program.Count) {
