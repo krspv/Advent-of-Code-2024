@@ -1,6 +1,7 @@
 ﻿// Day 17 - Chronospatial Computer
 using Helpers;
 using System.Diagnostics;
+using System.Text;
 
 Console.OutputEncoding = System.Text.Encoding.UTF8;
 Stopwatch stopwatch = new();
@@ -36,11 +37,42 @@ PrintHelper.ПечатиПрвДел(stopwatch.ElapsedMilliseconds, computer.Out
 stopwatch.Restart();
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Part 2
+List<char> list = (lines[4].Split(':', StringSplitOptions.TrimEntries)[1].Split(',')).Select(Char.Parse).ToList();
+list.Reverse();
+List<int> lstUsed = [];
+long A = 0;
+StringBuilder sb = new();
+
+foreach (char ch in list) {
+  A = 0;
+  long nShifter = 8;
+  for (int i = lstUsed.Count - 1; i >= 0; --i) {
+    A += nShifter * lstUsed[i];
+    nShifter <<= 3;
+  }
+
+  if (sb.Length > 0) sb.Insert(0, ',');
+  sb.Insert(0, ch);
+  string strExpected = sb.ToString();
+  long tmp = A;
+
+  while (true) {
+    computer = new(lines);
+    computer.SetA(A);
+    computer.Run();
+    if (computer.Output == strExpected)
+      break;
+    A++;
+  }
+
+  lstUsed.Add((int)(A - tmp));
+}
+
 // Part 2
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 stopwatch.Stop();
 
-PrintHelper.ПечатиВторДел(stopwatch.ElapsedMilliseconds, 0);
+PrintHelper.ПечатиВторДел(stopwatch.ElapsedMilliseconds, A);
 
 
 
@@ -98,4 +130,6 @@ class KComputer {
       }
     }
   }
+
+  public void SetA(long val) { Reg[0] = val; }
 }
