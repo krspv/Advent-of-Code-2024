@@ -37,35 +37,18 @@ PrintHelper.ПечатиПрвДел(stopwatch.ElapsedMilliseconds, computer.Out
 stopwatch.Restart();
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Part 2
-List<char> list = (lines[4].Split(':', StringSplitOptions.TrimEntries)[1].Split(',')).Select(Char.Parse).ToList();
-list.Reverse();
-List<int> lstUsed = [];
+string strTarget = lines[4].Split(':', StringSplitOptions.TrimEntries)[1];
 long A = 0;
-StringBuilder sb = new();
-
-foreach (char ch in list) {
-  A = 0;
-  long nShifter = 8;
-  for (int i = lstUsed.Count - 1; i >= 0; --i) {
-    A += nShifter * lstUsed[i];
-    nShifter <<= 3;
-  }
-
-  if (sb.Length > 0) sb.Insert(0, ',');
-  sb.Insert(0, ch);
-  string strExpected = sb.ToString();
-  long tmp = A;
-
+while (true) {
   while (true) {
     computer = new(lines);
     computer.SetA(A);
     computer.Run();
-    if (computer.Output == strExpected)
-      break;
+    if (strTarget.EndsWith(computer.Output)) break;
     A++;
   }
-
-  lstUsed.Add((int)(A - tmp));
+  if (strTarget == computer.Output) break;
+  A *= 8;
 }
 // Part 2
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
