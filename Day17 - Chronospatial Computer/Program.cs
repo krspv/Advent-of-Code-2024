@@ -1,7 +1,6 @@
 ﻿// Day 17 - Chronospatial Computer
 using Helpers;
 using System.Diagnostics;
-using System.Text;
 
 Console.OutputEncoding = System.Text.Encoding.UTF8;
 Stopwatch stopwatch = new();
@@ -15,6 +14,7 @@ string fileName = Path.Combine(Directory.GetParent(AppContext.BaseDirectory).Par
 
 // Read the input
 List<string> lines = [.. File.ReadAllLines(fileName)];
+
 
 
 
