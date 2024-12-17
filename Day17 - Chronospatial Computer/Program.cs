@@ -71,15 +71,13 @@ PrintHelper.ПечатиЕлкаЗаКрај();
 enum KOpcode { ADV = 0, BXL, BST, JNZ, BXC, OUT, BDV, CDV };
 
 class KComputer {
-  private List<(KOpcode, int)> program;
-  private long[] Reg = new long[3]; // Registers
-  private int nHead;
-  private List<char> output = [];
+  private readonly List<(KOpcode, int)> program = [];
+  private readonly long[] Reg = new long[3]; // Registers
+  private int nHead = 0;
+  private readonly List<char> output = [];
   public string Output => String.Join(',', output);
 
   public KComputer(List<string> inputLines) {
-    nHead = 0;
-
     for (int i = 0; i < 3; ++i) {
       string[] strReg = inputLines[i].Split(':', StringSplitOptions.TrimEntries);
       Debug.Assert(strReg.Length == 2 && strReg[0].StartsWith("Register ") && strReg[0].Last() == "ABC"[i]);
@@ -90,7 +88,6 @@ class KComputer {
     Debug.Assert(strProg.Length == 2 && strProg[0] == "Program");
     strProg = strProg[1].Split(',', StringSplitOptions.TrimEntries);
 
-    program = [];
     for (int i = 0; i < strProg.Length; i += 2)
       program.Add(((KOpcode)Int32.Parse(strProg[i]), Int32.Parse(strProg[i + 1])));
   }
@@ -114,5 +111,5 @@ class KComputer {
     }
   }
 
-  public void SetA(long val) { Reg[0] = val; }
+  public void SetA(long val) { Reg[0] = val; }  // Added for Part 2
 }
