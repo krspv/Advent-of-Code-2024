@@ -37,7 +37,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day14 - Restroom Redoubt", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day15 - Warehouse Woes", "Day15 - Warehouse Woes\Day15 - Warehouse Woes.csproj", "{24B1BD8E-9244-4D92-822A-ED853884E670}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day16 - Reindeer Maze", "Day16 - Reindeer Maze\Day16 - Reindeer Maze.csproj", "{38687413-690B-4874-BEC1-C75973F7B2F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day16 - Reindeer Maze", "Day16 - Reindeer Maze\Day16 - Reindeer Maze.csproj", "{38687413-690B-4874-BEC1-C75973F7B2F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day17 - Chronospatial Computer", "Day17 - Chronospatial Computer\Day17 - Chronospatial Computer.csproj", "{67BDAF00-D63C-46DA-AFF6-656A18A1461F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -117,6 +119,10 @@ Global
 		{38687413-690B-4874-BEC1-C75973F7B2F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38687413-690B-4874-BEC1-C75973F7B2F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38687413-690B-4874-BEC1-C75973F7B2F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67BDAF00-D63C-46DA-AFF6-656A18A1461F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67BDAF00-D63C-46DA-AFF6-656A18A1461F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67BDAF00-D63C-46DA-AFF6-656A18A1461F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67BDAF00-D63C-46DA-AFF6-656A18A1461F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
