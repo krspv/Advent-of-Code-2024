@@ -69,7 +69,6 @@ PrintHelper.ПечатиПрвДел(stopwatch.ElapsedMilliseconds, mem[nSize - 
 stopwatch.Restart();
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Part 2
-HashSet<(int, int)> minPathNodes = [];
 bool bCanReach;
 void CanReach((int x, int y) pos, HashSet<(int, int)> set) {
   if (pos == (1, 1)) bCanReach = true;
