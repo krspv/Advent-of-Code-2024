@@ -32,6 +32,7 @@ int[,] mem = new int[nSize,nSize];
 for (int x = 0; x < nSize; ++x)
   for (int y = 0; y < nSize; ++y)
     mem[y, x] = (x == 0 || x == nSize - 1 || y == 0 || y == nSize - 1) ? -1 : Int32.MaxValue;
+// string mv = DebugMemorySpace();
 
 // First fall
 for (int n = 0; n < nTotalFalls; ++n) {
@@ -40,8 +41,7 @@ for (int n = 0; n < nTotalFalls; ++n) {
 }
 
 (int, int)[] directions = [(-1, 0), (1, 0), (0, 1), (0, -1)];
-
-// string mv = DebugMemorySpace();
+// mv = DebugMemorySpace();
 
 void MinPath((int x, int y) pos, int nCurrentScore) {
   mem[pos.y, pos.x] = nCurrentScore;
@@ -54,7 +54,6 @@ void MinPath((int x, int y) pos, int nCurrentScore) {
 }
 
 MinPath((1, 1), 0);
-
 // mv = DebugMemorySpace();
 // Part 1
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -77,6 +76,7 @@ void CanReach((int x, int y) pos, HashSet<(int, int)> set) {
     foreach (var (dY, dX) in directions) CanReach((pos.x + dX, pos.y + dY), set);
   }
 }
+
 string strSolution = "";
 for (int n = nTotalFalls; n < memoryFall.Count; ++n) {
   var (x, y) = memoryFall[n];
