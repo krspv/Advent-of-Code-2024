@@ -23,30 +23,15 @@ List<string> patterns = lines[2..];
 
 stopwatch.Start();
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Part 1
-int nMaxLen = towels.Max(p => p.Length);
-
+// Part 1 (Could have used caching for performance, however it runs relatively fast even without caching)
 bool MatchPattern(string pattern) {
-  int nPos = 0, nEndPos = Math.Min(nPos + nMaxLen, pattern.Length);
+  if (pattern == "") return true;
 
-  Stack<int> stack = [];
-  while (nPos < pattern.Length) {
-    while (nEndPos > nPos && !towels.Contains(pattern[nPos..nEndPos]))
-      nEndPos--;
+  foreach (string towel in towels)
+    if (pattern.StartsWith(towel) && MatchPattern(pattern[towel.Length..]))
+      return true;
 
-    if (nEndPos > nPos) {
-      stack.Push(nEndPos - nPos);
-      nPos = nEndPos;
-      nEndPos = Math.Min(nPos + nMaxLen, pattern.Length);
-    } else {
-      if (stack.Count == 0) return false;
-      int nPrevMax = stack.Pop();
-      nEndPos = nPos - 1;
-      nPos -= nPrevMax;
-    }
-  }
-
-  return true;
+  return false;
 }
 
 long nCount = patterns.Count(MatchPattern);
@@ -62,7 +47,7 @@ PrintHelper.ПечатиПрвДел(stopwatch.ElapsedMilliseconds, nCount);
 
 stopwatch.Restart();
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Part 2
+// Part 2 (Caching is essential)
 Dictionary<string, long> cache = [];
 
 long CountPatterns(string pattern) {
@@ -70,7 +55,7 @@ long CountPatterns(string pattern) {
 
   long nTotal = towels.Contains(pattern) ? 1 : 0;
 
-  for (int i = 1; i< pattern.Length; ++i) {
+  for (int i = 1; i < pattern.Length; ++i) {
     if (towels.Contains(pattern[..i]))
       nTotal += CountPatterns(pattern[i..]);
   }
