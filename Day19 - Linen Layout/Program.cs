@@ -68,16 +68,15 @@ Dictionary<string, long> cache = [];
 long CountPatterns(string pattern) {
   if (cache.TryGetValue(pattern, out long value)) return value;
 
-  long nTotal = 0;
-  if (MatchPattern(pattern)) {
-    foreach (string towel in towels) {
-      if (towel.Length < pattern.Length && pattern.StartsWith(towel))
-        nTotal += CountPatterns(pattern[towel.Length..]);
-    }
-    if (towels.Contains(pattern)) nTotal++;
+  long nTotal = towels.Contains(pattern) ? 1 : 0;
+
+  for (int i = 1; i< pattern.Length; ++i) {
+    if (towels.Contains(pattern[..i]))
+      nTotal += CountPatterns(pattern[i..]);
   }
+
   cache.Add(pattern, nTotal);
-  
+
   return cache[pattern];
 }
 
