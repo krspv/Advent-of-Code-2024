@@ -53,8 +53,6 @@ while (true) {
   }
 }
 
-int nFullRacePS = track.Keys.Count-1;
-
 int nTotalOver99ps = 0;
 foreach (var (nR, nC) in track.Keys) {
   foreach (var (dR, dC) in directions) {
