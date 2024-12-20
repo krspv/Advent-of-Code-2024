@@ -43,7 +43,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day17 - Chronospatial Compu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day18 - RAM Run", "Day18 - RAM Run\Day18 - RAM Run.csproj", "{E5B6D072-3A83-4963-9B47-60E1AFABC85B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day19 - Linen Layout", "Day19 - Linen Layout\Day19 - Linen Layout.csproj", "{7B31EC02-D0CA-453D-B533-A134A312495B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day19 - Linen Layout", "Day19 - Linen Layout\Day19 - Linen Layout.csproj", "{7B31EC02-D0CA-453D-B533-A134A312495B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day20 - Race Condition", "Day20 - Race Condition\Day20 - Race Condition.csproj", "{1ABEEB60-5C40-433C-B7C1-324570AB0A6B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -135,6 +137,10 @@ Global
 		{7B31EC02-D0CA-453D-B533-A134A312495B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B31EC02-D0CA-453D-B533-A134A312495B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B31EC02-D0CA-453D-B533-A134A312495B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1ABEEB60-5C40-433C-B7C1-324570AB0A6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1ABEEB60-5C40-433C-B7C1-324570AB0A6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1ABEEB60-5C40-433C-B7C1-324570AB0A6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1ABEEB60-5C40-433C-B7C1-324570AB0A6B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
