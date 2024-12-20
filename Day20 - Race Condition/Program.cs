@@ -1,8 +1,6 @@
 ﻿// Day 20 - Race Condition
 using Helpers;
-using System.ComponentModel;
 using System.Diagnostics;
-using System.Transactions;
 
 Console.OutputEncoding = System.Text.Encoding.UTF8;
 Stopwatch stopwatch = new();
