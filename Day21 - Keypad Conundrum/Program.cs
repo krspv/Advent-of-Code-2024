@@ -110,7 +110,6 @@ class Robot(Robot.KeypadType type, Robot child = null) {
         : setComb.Where(IsGood).Min(comb => comb.ToCharArray().Sum(ch => child.Move(ch)));
     }
 
-
     nRow = nTargetRow;
     nCol = nTargetCol;
     return cache[key];
