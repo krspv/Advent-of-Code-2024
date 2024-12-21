@@ -83,54 +83,51 @@ class Robot(Robot.KeypadType type, Robot child = null) {
   public enum KeypadType { Numeric, Directional };
   private int nRow = type == KeypadType.Numeric ? 3 : 0, nCol = 2;
   private readonly List<string> Keypad = type == KeypadType.Numeric ? ["789", "456", "123", "X0A"] : ["X^A", "<v>"];
-  private Robot child = child;
-  private Dictionary<((int r, int c) from, (int r, int c) to), long> cache = [];
+  private readonly Robot child = child;
+  private readonly Dictionary<((int r, int c) from, (int r, int c) to), long> cache = [];
 
   public long Move(char chTarget) {
     int nTargetRow = Keypad.FindIndex(row => row.Contains(chTarget));
     int nTargetCol = Keypad[nTargetRow].IndexOf(chTarget);
 
     var key = ((nRow, nCol), (nTargetRow, nTargetCol));
-    if (cache.ContainsKey(key)) {
-      nRow = nTargetRow;
-      nCol = nTargetCol;
-      return cache[key];
+    if (!cache.ContainsKey(key)) {
+      string strVert = nTargetRow switch {
+        var n when n < nRow => new string('^', nRow - n),
+        var n when n > nRow => new string('v', n - nRow),
+        _ => "",
+      };
+      string strHorz = nTargetCol switch {
+        var n when n < nCol => new string('<', nCol - n),
+        var n when n > nCol => new string('>', n - nCol),
+        _ => "",
+      };
+
+      HashSet<string> setComb = Combinations(strVert, strHorz);
+      List<string> listComb = [];
+      if (setComb.Count > 1) {
+        foreach (string comb in setComb) {
+          if (IsGood(comb))
+            listComb.Add(comb);
+        }
+      } else
+        listComb = [.. setComb];
+      listComb = listComb.Select(comb => comb + "A").ToList();
+
+      if (child == null)
+        cache[key] = listComb[0].Length;
+      else {
+        long nRet = Int64.MaxValue;
+        foreach (string comb in listComb) {
+          long nCur = 0;
+          foreach (char ch in comb)
+            nCur += child.Move(ch);
+          nRet = Math.Min(nRet, nCur);
+        }
+        cache[key] = nRet;
+      }
     }
 
-    string strVert = nTargetRow switch {
-      var n when n < nRow => new string('^', nRow - n),
-      var n when n > nRow => new string('v', n - nRow),
-      _ => "",
-    };
-    string strHorz = nTargetCol switch {
-      var n when n < nCol => new string('<', nCol - n),
-      var n when n > nCol => new string('>', n - nCol),
-      _ => "",
-    };
-
-    HashSet<string> setComb = Combinations(strVert, strHorz);
-    List<string> listComb = [];
-    if (setComb.Count > 1) {
-      foreach (string comb in setComb) {
-        if (IsGood(comb))
-          listComb.Add(comb);
-      }
-    } else
-      listComb = [.. setComb];
-    listComb = listComb.Select(comb => comb + "A").ToList();
-
-    if (child == null)
-      cache[key] = listComb[0].Length;
-    else {
-      long nRet = Int64.MaxValue;
-      foreach (string comb in listComb) {
-        long nCur = 0;
-        foreach (char ch in comb)
-          nCur += child.Move(ch);
-        nRet = Math.Min(nRet, nCur);
-      }
-      cache[key] = nRet;
-    }
 
     nRow = nTargetRow;
     nCol = nTargetCol;
