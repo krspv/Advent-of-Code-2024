@@ -22,9 +22,9 @@ List<string> lines = [.. File.ReadAllLines(fileName)];
 stopwatch.Start();
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Part 1
-Robot rDir2 = new Robot(Robot.KeypadType.Directional);
-Robot rDir1 = new Robot(Robot.KeypadType.Directional, rDir2);
-Robot rNum = new Robot(Robot.KeypadType.Numeric, rDir1);
+Robot rDir2 = new(Robot.KeypadType.Directional);
+Robot rDir1 = new(Robot.KeypadType.Directional, rDir2);
+Robot rNum = new(Robot.KeypadType.Numeric, rDir1);
 
 long CalcComplexity(Robot R) {
   long nSum = 0;
@@ -53,13 +53,13 @@ PrintHelper.ПечатиПрвДел(stopwatch.ElapsedMilliseconds, nResult);
 stopwatch.Restart();
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Part 2
-Robot rDirNext = new Robot(Robot.KeypadType.Directional);
+Robot rDirNext = new(Robot.KeypadType.Directional);
 Robot rDirCur = null;
 for (int i = 0; i < 24; ++i) {
-  rDirCur = new Robot(Robot.KeypadType.Directional, rDirNext);
+  rDirCur = new(Robot.KeypadType.Directional, rDirNext);
   rDirNext = rDirCur;
 }
-rNum = new Robot(Robot.KeypadType.Numeric, rDirCur);
+rNum = new(Robot.KeypadType.Numeric, rDirCur);
 
 nResult = CalcComplexity(rNum);
 // Part 2
@@ -104,28 +104,10 @@ class Robot(Robot.KeypadType type, Robot child = null) {
       };
 
       HashSet<string> setComb = Combinations(strVert, strHorz);
-      List<string> listComb = [];
-      if (setComb.Count > 1) {
-        foreach (string comb in setComb) {
-          if (IsGood(comb))
-            listComb.Add(comb);
-        }
-      } else
-        listComb = [.. setComb];
-      listComb = listComb.Select(comb => comb + "A").ToList();
 
-      if (child == null)
-        cache[key] = listComb[0].Length;
-      else {
-        long nRet = Int64.MaxValue;
-        foreach (string comb in listComb) {
-          long nCur = 0;
-          foreach (char ch in comb)
-            nCur += child.Move(ch);
-          nRet = Math.Min(nRet, nCur);
-        }
-        cache[key] = nRet;
-      }
+      cache[key] = child == null
+        ? setComb.First().Length
+        : setComb.Where(IsGood).Min(comb => comb.ToCharArray().Sum(ch => child.Move(ch)));
     }
 
 
@@ -134,21 +116,20 @@ class Robot(Robot.KeypadType type, Robot child = null) {
     return cache[key];
   }
 
-  private HashSet<string> Combinations(string s1, string s2) {
-    if (s1.Length == 0) return [s2];
-    if (s2.Length == 0) return [s1];
-    char ch = s2[0];
-    string s3 = s2[1..];
+  private static HashSet<string> Combinations(string s1, string s2) {
+    if (s1.Length == 0) return [s2 + "A"];
+    if (s2.Length == 0) return [s1 + "A"];
 
     HashSet<string> ret = [];
     for (int i = 0; i <= s1.Length; ++i)
-      ret = [.. ret, .. Combinations(s1[..i] + ch + s1[i..], s3)];
+      ret = [.. ret, .. Combinations(s1[..i] + s2[0] + s1[i..], s2[1..])];
 
     return ret;
   }
 
   private bool IsGood(string comb) {
     int nR1 = nRow, nC1 = nCol;
+
     foreach (char ch in comb) {
       switch (ch) {
         case '^': nR1--; break;
