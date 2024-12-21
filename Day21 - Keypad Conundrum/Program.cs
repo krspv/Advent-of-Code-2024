@@ -107,7 +107,7 @@ class Robot(Robot.KeypadType type, Robot child = null) {
 
       cache[key] = child == null
         ? setComb.First().Length
-        : setComb.Where(IsGood).Min(comb => comb.ToCharArray().Sum(long (char ch) => child.Move(ch)));
+        : setComb.Where(IsGood).Min(comb => comb.Sum(long (char ch) => child.Move(ch)));
     }
 
     nRow = nTargetRow;
