@@ -53,14 +53,13 @@ PrintHelper.ПечатиПрвДел(stopwatch.ElapsedMilliseconds, nSum);
 stopwatch.Restart();
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Part 2
-List<Dictionary<int, int>> nest = [];  // Sequence for num
-HashSet<int> allSeqs = [];
-foreach (long nNum in secrets) {
-  nest.Add([]);
-  var dict = nest.Last();
+Dictionary<int, int>dict = [];  // <sequence, number> - The number when this sequence appears for the first time
 
+foreach (long nNum in secrets) {
   long nTemp = nNum;
   Queue<int> q = [];
+  HashSet<int> used = [];
+
   for (int i = 0; i < 2000; ++i) {
     long n = Evolve(nTemp);
     int n1 = (int)(n % 10);
@@ -70,9 +69,12 @@ foreach (long nNum in secrets) {
       if (n1 > 0) {
         List<int> lst = [.. q];
         int val20 = lst[0] * 8000 + lst[1] * 400 + lst[2] * 20 + lst[3];
-        if (!dict.ContainsKey(val20))
-          dict[val20] = n1;
-        allSeqs.Add(val20);
+        if (!used.Contains(val20)) {
+          if (!dict.ContainsKey(val20))
+            dict[val20] = 0;
+          dict[val20] += n1;
+          used.Add(val20);
+        }
       }
       q.Dequeue();
     }
@@ -80,15 +82,7 @@ foreach (long nNum in secrets) {
   }
 }
 
-int nMax = 0;
-foreach (int nSeq in allSeqs) {
-  int nTotal = 0;
-  foreach (var dict in nest) {
-    if (dict.TryGetValue(nSeq, out int val))
-      nTotal += val;
-  }
-  nMax = Math.Max(nMax, nTotal);
-}
+int nMax = dict.Values.Max();
 // Part 2
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 stopwatch.Stop();
