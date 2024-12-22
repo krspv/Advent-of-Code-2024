@@ -47,7 +47,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day19 - Linen Layout", "Day
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day20 - Race Condition", "Day20 - Race Condition\Day20 - Race Condition.csproj", "{1ABEEB60-5C40-433C-B7C1-324570AB0A6B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day21 - Keypad Conundrum", "Day21 - Keypad Conundrum\Day21 - Keypad Conundrum.csproj", "{29EC3782-DEFE-4760-8C0C-B2E1C057B279}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day21 - Keypad Conundrum", "Day21 - Keypad Conundrum\Day21 - Keypad Conundrum.csproj", "{29EC3782-DEFE-4760-8C0C-B2E1C057B279}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day22 - Monkey Market", "Day22 - Monkey Market\Day22 - Monkey Market.csproj", "{289542D4-09F6-475D-B624-8F648D7AFFE7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -147,6 +149,10 @@ Global
 		{29EC3782-DEFE-4760-8C0C-B2E1C057B279}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29EC3782-DEFE-4760-8C0C-B2E1C057B279}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29EC3782-DEFE-4760-8C0C-B2E1C057B279}.Release|Any CPU.Build.0 = Release|Any CPU
+		{289542D4-09F6-475D-B624-8F648D7AFFE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{289542D4-09F6-475D-B624-8F648D7AFFE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{289542D4-09F6-475D-B624-8F648D7AFFE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{289542D4-09F6-475D-B624-8F648D7AFFE7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
