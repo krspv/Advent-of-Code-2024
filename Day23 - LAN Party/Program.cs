@@ -1,13 +1,12 @@
 ﻿// Day 23 - LAN Party
 using Helpers;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 
 Console.OutputEncoding = System.Text.Encoding.UTF8;
 Stopwatch stopwatch = new();
 PrintHelper.ПечатиНаслов(23, "LAN Party");
 
-string fileName = Path.Combine(Directory.GetParent(AppContext.BaseDirectory).Parent.Parent.Parent.FullName, "input2.txt");
+string fileName = Path.Combine(Directory.GetParent(AppContext.BaseDirectory).Parent.Parent.Parent.FullName, "input.txt");
 
 
 
@@ -70,10 +69,8 @@ foreach (string v1 in vertices)
     if (edges[v1].Contains(v2)) {
       int nCount = 0; // Count how many indirect connections between v1 and v2 exist (v1 - v3 - v2) [i.e. v3 is between v1 and v2]
       foreach (string v3 in vertices) {
-        if (v3 != v1 && v3 != v2) {
-          if (edges[v1].Contains(v3) && edges[v3].Contains(v2))
-            nCount++;
-        }
+        if (edges[v1].Contains(v3) && edges[v3].Contains(v2))
+          nCount++;
       }
       if (nCount < nMaxEdges - 2) { // This edge (v1 - v2) does not belong to the maximum LAN party, so remove it
         edges[v1].Remove(v2);
