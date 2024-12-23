@@ -64,20 +64,16 @@ stopwatch.Restart();
 // Part 2
 int nMaxEdges = edges.Max(edge => edge.Value.Count);  // This is how many computers the maximum LAN party will have
 
-foreach (string v1 in vertices)
-  foreach (string v2 in vertices) {
-    if (edges[v1].Contains(v2)) {
-      int nCount = 0; // Count how many indirect connections between v1 and v2 exist (v1 - v3 - v2) [i.e. v3 is between v1 and v2]
-      foreach (string v3 in vertices) {
-        if (edges[v1].Contains(v3) && edges[v3].Contains(v2))
-          nCount++;
-      }
-      if (nCount < nMaxEdges - 2) { // This edge (v1 - v2) does not belong to the maximum LAN party, so remove it
-        edges[v1].Remove(v2);
-        edges[v2].Remove(v1);
-      }
+foreach (string v1 in vertices) {
+  foreach (string v2 in edges[v1].ToList()) {
+    int nCount = edges[v1].Count(v3 => edges[v3].Contains(v2)); // Count how many indirect connections between v1 and v2 exist (v1 - v3 - v2) [i.e. v3 is between v1 and v2]
+
+    if (nCount < nMaxEdges - 2) { // This edge (v1 - v2) does not belong to the maximum LAN party, so remove it
+      edges[v1].Remove(v2);
+      edges[v2].Remove(v1);
     }
   }
+}
 
 string vertexMax = vertices.First(vert => edges[vert].Count > 0); // Member of the maximum LAN party
 HashSet<string> setMax = [vertexMax, .. edges[vertexMax]];  // The maximum LAN party
