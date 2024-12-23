@@ -83,9 +83,7 @@ while (true) {
   if (groups.Count < 2) break;
 }
 
-List<string> list = [.. groups.First()];
-list.Sort();
-string password = string.Join(',', list);
+string password = String.Join(',', groups.First().OrderBy(s => s));
 // Part 2
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 stopwatch.Stop();
