@@ -7,7 +7,7 @@ Console.OutputEncoding = System.Text.Encoding.UTF8;
 Stopwatch stopwatch = new();
 PrintHelper.ПечатиНаслов(23, "LAN Party");
 
-string fileName = Path.Combine(Directory.GetParent(AppContext.BaseDirectory).Parent.Parent.Parent.FullName, "input.txt");
+string fileName = Path.Combine(Directory.GetParent(AppContext.BaseDirectory).Parent.Parent.Parent.FullName, "input2.txt");
 
 
 
@@ -63,27 +63,28 @@ PrintHelper.ПечатиПрвДел(stopwatch.ElapsedMilliseconds, nTotal);
 stopwatch.Restart();
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Part 2
-HashSet<HashSet<string>> groups = new(new KSetComparer());  // Initial group of 2 elements each
-foreach (string vertice in vertices) {
-  foreach (string next in edges[vertice]) {
-    groups.Add([vertice, next]);
-  }
-}
+int nMaxEdges = edges.Max(edge => edge.Value.Count);  // This is how many computers the maximum LAN party will have
 
-while (true) {
-  HashSet<HashSet<string>> nextGroups = new(new KSetComparer());  // Groups of 3, 4, 5 etc elements each
-  foreach (string vertice in vertices) {
-    foreach (HashSet<string> group in groups) {
-      if (!group.Contains(vertice) && group.IsSubsetOf(edges[vertice])) {
-        nextGroups.Add([vertice, .. group]);
+foreach (string v1 in vertices)
+  foreach (string v2 in vertices) {
+    if (edges[v1].Contains(v2)) {
+      int nCount = 0; // Count how many indirect connections between v1 and v2 exist (v1 - v3 - v2) [i.e. v3 is between v1 and v2]
+      foreach (string v3 in vertices) {
+        if (v3 != v1 && v3 != v2) {
+          if (edges[v1].Contains(v3) && edges[v3].Contains(v2))
+            nCount++;
+        }
+      }
+      if (nCount < nMaxEdges - 2) { // This edge (v1 - v2) does not belong to the maximum LAN party, so remove it
+        edges[v1].Remove(v2);
+        edges[v2].Remove(v1);
       }
     }
   }
-  groups = nextGroups;
-  if (groups.Count < 2) break;
-}
 
-string password = String.Join(',', groups.First().OrderBy(s => s));
+string vertexMax = vertices.First(vert => edges[vert].Count > 0); // Member of the maximum LAN party
+HashSet<string> setMax = [vertexMax, .. edges[vertexMax]];  // The maximum LAN party
+string password = String.Join(',', setMax.OrderBy(s => s));
 // Part 2
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 stopwatch.Stop();
@@ -95,13 +96,3 @@ PrintHelper.ПечатиВторДел(stopwatch.ElapsedMilliseconds, password);
 
 
 PrintHelper.ПечатиЕлкаЗаКрај();
-
-
-
-
-
-// Types
-class KSetComparer : IEqualityComparer<HashSet<string>> {
-  public bool Equals(HashSet<string> x, HashSet<string> y) => x.SetEquals(y);
-  public int GetHashCode([DisallowNull] HashSet<string> obj) => obj.Aggregate(0, (hash, item) => hash ^ item.GetHashCode());
-}
