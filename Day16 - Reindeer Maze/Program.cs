@@ -103,10 +103,14 @@ while (queueBack.Count > 0) {
         if (maze[row + dR][col + dC] != '#') {
           if (costMap[row + dR, col + dC] == costMap[row, col] - 1)
             nextQueue.Enqueue((row + dR, col + dC));
-          else if (costMap[row + dR, col + dC] == costMap[row, col] - 1001) {
-            nextQueue.Enqueue((row + dR, col + dC));
-            if (maze[row + 2 * dR][col + 2 * dC] != '#' && costMap[row + 2 * dR, col + 2 * dC] == costMap[row, col] - 2)
+          else if (costMap[row + dR, col + dC] < costMap[row, col]) {
+            if (costMap[row, col] - costMap[row + dR, col + dC] == 1001)
+              nextQueue.Enqueue((row + dR, col + dC));
+            if (maze[row + 2 * dR][col + 2 * dC] != '#' && costMap[row + 2 * dR, col + 2 * dC] == costMap[row, col] - 2) {
               nextQueue.Enqueue((row + 2 * dR, col + 2 * dC));
+              if (costMap[row, col] - costMap[row + dR, col + dC] < 1001)
+                history.Add((row + dR, col + dC));
+            }
           }
         }
     }
