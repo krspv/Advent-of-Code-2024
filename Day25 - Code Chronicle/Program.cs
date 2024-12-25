@@ -15,7 +15,7 @@ string fileName = Path.Combine(Directory.GetParent(AppContext.BaseDirectory).Par
 // Read the input
 List<int[]> keys = [], locks = [];
 string[] lines = File.ReadAllLines(fileName);
-for (int nLineIdx = 0; nLineIdx < lines.Length; ++nLineIdx) {
+for (int nLineIdx = 0; nLineIdx < lines.Length; nLineIdx += 8) {
   int[] columnValues = new int[5];
   for (int nCol = 0; nCol < 5; ++nCol)
     for (int nRow = 0; nRow < 7; ++nRow)
@@ -26,8 +26,6 @@ for (int nLineIdx = 0; nLineIdx < lines.Length; ++nLineIdx) {
     locks.Add(columnValues);
   else
     keys.Add(columnValues);
-
-  nLineIdx += 7;
 }
 
 
