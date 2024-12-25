@@ -53,7 +53,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day22 - Monkey Market", "Da
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day23 - LAN Party", "Day23 - LAN Party\Day23 - LAN Party.csproj", "{2509C9C7-0988-4F6A-B5FB-E292159682FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day24 - Crossed Wires", "Day24 - Crossed Wires\Day24 - Crossed Wires.csproj", "{612F368D-0E4B-4FB2-99F3-BD98DC196085}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Day24 - Crossed Wires", "Day24 - Crossed Wires\Day24 - Crossed Wires.csproj", "{612F368D-0E4B-4FB2-99F3-BD98DC196085}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Day25 - Code Chronicle", "Day25 - Code Chronicle\Day25 - Code Chronicle.csproj", "{1D85102F-3935-43A5-B915-E965B40C726F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -165,6 +167,10 @@ Global
 		{612F368D-0E4B-4FB2-99F3-BD98DC196085}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{612F368D-0E4B-4FB2-99F3-BD98DC196085}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{612F368D-0E4B-4FB2-99F3-BD98DC196085}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D85102F-3935-43A5-B915-E965B40C726F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D85102F-3935-43A5-B915-E965B40C726F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D85102F-3935-43A5-B915-E965B40C726F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D85102F-3935-43A5-B915-E965B40C726F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
