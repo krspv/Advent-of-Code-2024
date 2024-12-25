@@ -54,7 +54,7 @@ while (true) {
     break;
   }
 
-  bool bNextDo = idxDont == -1 || (idxDont > idxDo);
+  bool bNextDo = idxDo != -1 && (idxDont == -1 || (idxDont > idxDo));
   int idx = bNextDo ? idxDo : idxDont;
   if (bPrevDo) sb.Append(input[..idx]);
   input = input[(idx + (bNextDo ? 4 : 7))..];
