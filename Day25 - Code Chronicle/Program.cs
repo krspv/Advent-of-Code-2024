@@ -4,7 +4,7 @@ using System.Diagnostics;
 
 Console.OutputEncoding = System.Text.Encoding.UTF8;
 Stopwatch stopwatch = new();
-PrintHelper.ПечатиНаслов(24, "Code Chronicle");
+PrintHelper.ПечатиНаслов(25, "Code Chronicle");
 
 string fileName = Path.Combine(Directory.GetParent(AppContext.BaseDirectory).Parent.Parent.Parent.FullName, "input.txt");
 
