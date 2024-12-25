@@ -30,8 +30,7 @@ int nRowPos = 0, nColPos = -1;
 for (; nColPos == -1; ++nRowPos)
   nColPos = lines[nRowPos].IndexOf('^');
 
-int nCount = 1;
-visited[nRowPos,nColPos] = true;
+int nCount = 0;
 int nStartRow = nRowPos, nStartCol = nColPos; // Save for Part 2
 
 // Move the guard until she exits the area
